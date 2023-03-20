@@ -1,0 +1,6 @@
+cacheConnection: true
+leakHunter: true
+mergeDataSets: true
+properties:
+  schema: public
+  caseSensitiveTableNames: true

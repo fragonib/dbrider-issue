@@ -1,0 +1,40 @@
+package dbrider.spring;
+
+import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
+import org.springframework.stereotype.Service;
+
+import java.util.Map;
+
+@Service
+public class Table1Repository {
+
+    private final NamedParameterJdbcTemplate namedParameterJdbcTemplate;
+
+    public Table1Repository(NamedParameterJdbcTemplate namedParameterJdbcTemplate) {
+        this.namedParameterJdbcTemplate = namedParameterJdbcTemplate;
+    }
+
+    public Map<String, Object> findLast(String type) {
+        return namedParameterJdbcTemplate.queryForMap(
+                """
+                    SELECT *
+                    FROM table1 t
+                    WHERE t.type = :type
+                    ORDER BY t.row_created_on DESC
+                    LIMIT 1
+                """,
+                Map.of("type", type)
+        );
+    }
+
+    public void save(Record aRecord) {
+        namedParameterJdbcTemplate.update(
+                """
+                    INSERT INTO table1 (id, type)
+                    VALUES (:id, :type)
+                """,
+                Map.of("id", aRecord.id(), "type", aRecord.type())
+        );
+    }
+
+}
