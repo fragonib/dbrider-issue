@@ -1,6 +1,6 @@
 package dbrider.spring
 
-import com.github.database.rider.spring.api.DBRider
+import com.github.database.rider.junit5.api.DBRider
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.context.annotation.Import
 import org.springframework.test.context.jdbc.Sql

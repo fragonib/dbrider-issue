@@ -1,4 +1,4 @@
-cacheConnection: true
+cacheConnection: false
 leakHunter: true
 mergeDataSets: true
 properties:
